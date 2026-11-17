@@ -1,20 +1,17 @@
-# Krillion iOS Web Wrapper Starter
+# Krillion iOS app
 
-Minimal SwiftUI + WKWebView iOS project for the existing App Store Connect Krillion record.
+This XcodeGen project packages the playable Krillion PWA in the app bundle. The game and its support, terms, and privacy pages are available offline after installation.
 
-- App Store Connect bundle ID: `com.mariasheinin.krillion`
-- Content: deliberately absent as requested; native "Coming soon" placeholder
-- Website URL: intentionally empty until a real HTTPS game is available
-- Deployment: iOS 16.0+; marketing version 1.0.0 (build 1)
+## Build locally
 
-## Build on a Mac
-1. Install Xcode and XcodeGen (`brew install xcodegen`).
-2. Run `swift scripts/make-icon.swift Krillion` to generate the placeholder icon.
-3. Run `xcodegen generate` and open `Krillion.xcodeproj`.
-4. Choose the matching Apple Developer team in Signing & Capabilities.
-5. After building, test the app and add the real game and HTTPS URL to `Krillion/ContentView.swift`.
-6. To create an **App Store-uploadable** IPA, archive in Xcode and export using an Apple distribution signing identity and provisioning profile for `com.mariasheinin.krillion`.
+Requirements: macOS, Xcode, and XcodeGen.
 
-The GitHub Actions workflow runs only on manual dispatch and produces a clearly marked **UNSIGNED test IPA**, not an App Store uploadable file. It uses a GitHub macOS runner; charges or minutes may apply depending on account plan and repository visibility.
+1. Run `swift scripts/make-icon.swift Krillion`.
+2. Run `xcodegen generate`.
+3. Open `Krillion.xcodeproj` in Xcode.
+4. Select the Apple Developer team for signing. Keep the existing bundle ID `com.mariasheinin.krillion`.
+5. Run on a simulator or a registered device, then create an archive for App Store Connect.
 
-**Not ready for App Review:** A placeholder without meaningful functionality may be rejected under Apple's minimum functionality rules. Full game content, privacy declarations, metadata, accessibility checks and valid signing are required first.
+The GitHub Actions workflow is manually triggered and makes an **unsigned test IPA**. It is useful for inspecting build output but cannot be installed or uploaded to App Store Connect as a production build.
+
+The App Store metadata copy and open questions are in `APP-STORE-DRAFT.md`. The listing has not been submitted.
