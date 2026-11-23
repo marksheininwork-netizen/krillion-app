@@ -18,3 +18,8 @@ SwiftUI + WKWebView iOS game project for Krillion, served by the Cloudflare Work
 The GitHub Actions workflow runs only on manual dispatch and produces a clearly marked **UNSIGNED test IPA**, not an App Store uploadable file. It uses a GitHub macOS runner; charges or minutes may apply depending on account plan and repository visibility.
 
 **Not ready for App Review:** A placeholder without meaningful functionality may be rejected under Apple's minimum functionality rules. Full game content, privacy declarations, metadata, accessibility checks and valid signing are required first.
+
+
+## Data sources
+- Geography country and area names follow the United Nations Statistics Division M49 list: https://unstats.un.org/unsd/methodology/m49/.
+- The country-answer validator uses exact ISO country/area aliases and does not use a model to approve unknown answers.
