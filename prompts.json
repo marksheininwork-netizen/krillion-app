@@ -2056,5 +2056,274 @@
         96
       ]
     ]
+  },
+  {
+    "id": "continents",
+    "title": "Continents",
+    "hint": "Use the seven-continent model",
+    "answers": [
+      [
+        "Africa",
+        10
+      ],
+      [
+        "Asia",
+        10
+      ],
+      [
+        "Europe",
+        15
+      ],
+      [
+        "North America",
+        20
+      ],
+      [
+        "South America",
+        25
+      ],
+      [
+        "Oceania",
+        45
+      ],
+      [
+        "Antarctica",
+        95
+      ]
+    ]
+  },
+  {
+    "id": "oceans",
+    "title": "The five oceans",
+    "hint": "Name one of the world's five oceans",
+    "answers": [
+      [
+        "Pacific Ocean",
+        10
+      ],
+      [
+        "Atlantic Ocean",
+        15
+      ],
+      [
+        "Indian Ocean",
+        30
+      ],
+      [
+        "Southern Ocean",
+        55
+      ],
+      [
+        "Arctic Ocean",
+        65
+      ]
+    ]
+  },
+  {
+    "id": "us-states",
+    "title": "U.S. states",
+    "hint": "Type a state name; abbreviations are not accepted",
+    "answers": [
+      [
+        "California",
+        10
+      ],
+      [
+        "Texas",
+        10
+      ],
+      [
+        "Florida",
+        10
+      ],
+      [
+        "New York",
+        10
+      ],
+      [
+        "Hawaii",
+        20
+      ],
+      [
+        "Alaska",
+        25
+      ],
+      [
+        "Wyoming",
+        78
+      ],
+      [
+        "West Virginia",
+        72
+      ],
+      [
+        "Vermont",
+        65
+      ],
+      [
+        "North Dakota",
+        62
+      ],
+      [
+        "South Dakota",
+        60
+      ],
+      [
+        "Delaware",
+        45
+      ],
+      [
+        "Rhode Island",
+        55
+      ],
+      [
+        "Maine",
+        40
+      ],
+      [
+        "New Hampshire",
+        38
+      ],
+      [
+        "Montana",
+        50
+      ],
+      [
+        "Idaho",
+        42
+      ],
+      [
+        "Nebraska",
+        45
+      ],
+      [
+        "Kansas",
+        35
+      ],
+      [
+        "Oklahoma",
+        32
+      ],
+      [
+        "Arkansas",
+        30
+      ],
+      [
+        "Louisiana",
+        28
+      ],
+      [
+        "Mississippi",
+        35
+      ],
+      [
+        "Alabama",
+        25
+      ],
+      [
+        "Georgia",
+        18
+      ],
+      [
+        "South Carolina",
+        25
+      ],
+      [
+        "North Carolina",
+        18
+      ],
+      [
+        "Virginia",
+        20
+      ],
+      [
+        "Maryland",
+        25
+      ],
+      [
+        "Massachusetts",
+        22
+      ],
+      [
+        "Connecticut",
+        28
+      ],
+      [
+        "New Jersey",
+        20
+      ],
+      [
+        "Pennsylvania",
+        18
+      ],
+      [
+        "Ohio",
+        15
+      ],
+      [
+        "Michigan",
+        20
+      ],
+      [
+        "Indiana",
+        22
+      ],
+      [
+        "Illinois",
+        15
+      ],
+      [
+        "Wisconsin",
+        20
+      ],
+      [
+        "Minnesota",
+        24
+      ],
+      [
+        "Iowa",
+        27
+      ],
+      [
+        "Missouri",
+        20
+      ],
+      [
+        "Kentucky",
+        23
+      ],
+      [
+        "Tennessee",
+        15
+      ],
+      [
+        "Colorado",
+        15
+      ],
+      [
+        "New Mexico",
+        28
+      ],
+      [
+        "Arizona",
+        15
+      ],
+      [
+        "Nevada",
+        18
+      ],
+      [
+        "Oregon",
+        20
+      ],
+      [
+        "Washington",
+        15
+      ],
+      [
+        "Utah",
+        25
+      ]
+    ]
   }
 ]
