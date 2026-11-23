@@ -23,3 +23,5 @@ The GitHub Actions workflow runs only on manual dispatch and produces a clearly 
 ## Data sources
 - Geography country and area names follow the United Nations Statistics Division M49 list: https://unstats.un.org/unsd/methodology/m49/.
 - The country-answer validator uses exact ISO country/area aliases and does not use a model to approve unknown answers.
+- Deployment generates a 5,000-entry major-cities answer list from the GeoNames cities5000 extract. Names are exact-match; ASCII spellings are also accepted when GeoNames provides them.
+- GeoNames data is CC BY 4.0; attribution: GeoNames (https://www.geonames.org/). The generated city list is sourced from https://download.geonames.org/export/dump/cities5000.zip.
