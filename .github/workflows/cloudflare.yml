@@ -28,7 +28,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Validate configuration
+      - name: Build sourced geography answer bank\n        run: node scripts/build-geography-bank.mjs\n      - name: Validate configuration
         run: npx --yes wrangler@4 deploy --dry-run
       - name: Deploy Cloudflare Worker
         if: steps.credentials.outputs.ready == 'true'
