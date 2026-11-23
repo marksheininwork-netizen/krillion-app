@@ -5,7 +5,7 @@ import { join } from 'node:path';
 
 const source = 'https://download.geonames.org/export/dump/cities5000.zip';
 const response = await fetch(source, { headers: { 'user-agent': 'Krillion/1.0 (question-bank build)' } });
-if (!response.ok) throw new Error(\`GeoNames download failed: HTTP \${response.status}\`);
+if (!response.ok) throw new Error(`GeoNames download failed: HTTP \${response.status}`);
 
 const dir = mkdtempSync(join(tmpdir(), 'krillion-geonames-'));
 try {
@@ -28,7 +28,7 @@ try {
       return true;
     })
     .slice(0, 5000);
-  if (cities.length < 5000) throw new Error(\`Expected 5,000 unique cities, found \${cities.length}\`);
+  if (cities.length < 5000) throw new Error(`Expected 5,000 unique cities, found \${cities.length}`);
 
   const answers = cities.map((row, index) => {
     const rarity = index < 8 ? 10 : index === 4999 ? 95 : index < 1500 ? 35 : index < 3000 ? 52 : 72;
@@ -47,7 +47,7 @@ try {
   if (existing >= 0) bank[existing] = cityPrompt;
   else bank.push(cityPrompt);
   writeFileSync('prompts.json', JSON.stringify(bank, null, 2) + '\n');
-  console.log(\`Built \${answers.length} sourced city answers; 8 Plankton and 1 One in a Krillion.\`);
+  console.log(`Built \${answers.length} sourced city answers; 8 Plankton and 1 One in a Krillion.`);
 } finally {
   rmSync(dir, { recursive: true, force: true });
 }
