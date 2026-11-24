@@ -1,5 +1,5 @@
 import {normalize} from './question-engine.mjs';
-const types={'wd-languages':'Q34770','wd-islands':'Q23442','wd-mountains':'Q8502','wd-universities':'Q3918'};
+const types={'wd-languages':'Q34770','wd-islands':'Q23442','wd-mountains':'Q8502','wd-universities':'Q3918','wd-films':'Q11424','wd-books':'Q571','wd-sports':'Q349','wd-instruments':'Q34379','wd-occupations':'Q12737077','wd-museums':'Q33506','wd-airports':'Q1248784','wd-bridges':'Q12280','wd-volcanoes':'Q8072'};
 export async function verifyOnline(p,answer,{fetcher=fetch,storage=globalThis.localStorage}={}){
  if(!p||!answer||answer.length>80||!types[p.id])return null;
  const key='krillion-verified-v1:'+p.id+':'+normalize(answer);
