@@ -1,0 +1,27 @@
+name: Refresh open trivia datasets
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 7 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: trivia-refresh
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/refresh-data.mjs
+      - run: node --test tests/content.test.mjs tests/questions.test.mjs
+      - run: |
+          git config user.name "krillion-data[bot]"
+          git config user.email "krillion-data@users.noreply.github.com"
+          git add prompts.json
+          git diff --cached --quiet || git commit -m "Refresh open trivia datasets"
+          git push
