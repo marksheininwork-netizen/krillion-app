@@ -12,7 +12,7 @@ export function matchAnswer(p,answer){const input=variants(answer);for(const ent
 
 
 export function buildBank(base){
- const bank=base.map(p=>{const seen=new Set();const answers=[...p.answers,...additions(p.id)].filter(([a])=>{const k=normalize(a);if(seen.has(k)||p.id==='ocean'&&k==='human'||p.id==='countries'&&k==='england')return false;seen.add(k);return true});return {...p,answers}});
+ const bank=base.filter(p=>!/^multiple-|^math-|^arithmetic-/.test(p.id)).map(p=>{const seen=new Set();const answers=[...p.answers,...additions(p.id)].filter(([a])=>{const k=normalize(a);if(!k||seen.has(k)||p.id==='ocean'&&k==='human'||p.id==='countries'&&k==='england')return false;seen.add(k);return true});return {...p,answers}});
  const add=(id,title,hint,values)=>{if(bank.length>=5000)return;const scores=[5,10,15,20,25,30,35,45,50,60,70,95];bank.push({id,title,hint,answers:values.map((v,i)=>[String(v),scores[Math.min(11,Math.floor(i*12/values.length))]])})};
  const originals=[...bank];const seenTitles=new Set(bank.map(p=>p.title));
  const emit=(p,kind,rule,filter)=>{const answers=p.answers.filter(([a])=>filter(normalize(a)));if(answers.length<7)return;const title=p.title+' — '+rule;if(seenTitles.has(title))return;seenTitles.add(title);bank.push({...p,id:p.id+'-'+kind,title,hint:'Name a valid example matching the stated condition.',answers})};
@@ -23,4 +23,4 @@ export function validate(p,answer){if(!p||!String(answer).trim()||String(answer)
 export function round(bank,mode,seed,date=new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date())){let n=2166136261;for(const c of (mode==='daily'?date:seed))n=Math.imul(n^c.charCodeAt(0),16777619);const list=[...bank];for(let i=list.length-1;i>0;i--){n=(Math.imul(n,1664525)+1013904223)>>>0;const j=n%(i+1);[list[i],list[j]]=[list[j],list[i]]}return {date,tiers,prompts:list.slice(0,7).map(({id,title,hint})=>({id,title,hint}))}}
 
 export const categories={"geography":["countries","us-states","europe","africa","world-cities","rivers","landmarks"],"language":["colors","given-names"],"animals":["mammals","birds","ocean","dogs"],"food":["fruit","vegetables","foods"],"science":["space","weather","elements","trees","flowers"],"names":["given-names"],"culture":["sports","instruments"]};
-export function categoryBank(bank,key){return key==='mixed'?bank:bank.filter(p=> (key==='geography'&&/^(geo-city-|wd-islands|wd-mountains)/.test(p.id))||(key==='language'&&p.id.startsWith('wd-languages'))||(categories[key]||[]).some(id=>p.id===id||p.id.startsWith(id+'-')))}
+export function categoryBank(bank,key){return key==='mixed'?bank:bank.filter(p=> (key==='geography'&&/^(geo-city-|wd-islands|wd-mountains)/.test(p.id))||(key==='language'&&/^(wd-languages|wordnet-)/.test(p.id))||(categories[key]||[]).some(id=>p.id===id||p.id.startsWith(id+'-')))}

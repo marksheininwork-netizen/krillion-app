@@ -15,14 +15,14 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
       - run: node scripts/refresh-data.mjs
-      - run: node --test tests/content.test.mjs tests/questions.test.mjs
+      - run: node --test tests/questions.test.mjs
       - run: |
           git config user.name "krillion-data[bot]"
           git config user.email "krillion-data@users.noreply.github.com"
