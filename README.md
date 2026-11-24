@@ -1,20 +1,36 @@
-# Krillion iOS Web Wrapper Starter
+# Krillion-inspired Diving Word Game
 
-Minimal SwiftUI + WKWebView iOS project for the existing App Store Connect Krillion record.
+An original browser word game inspired by the category-diving concept of krillion.io. Not affiliated with the original game.
 
-- App Store Connect bundle ID: `com.mariasheinin.krillion`
-- Content: deliberately absent as requested; native "Coming soon" placeholder
-- Website URL: intentionally empty until a real HTTPS game is available
-- Deployment: iOS 16.0+; marketing version 1.0.0 (build 1)
+## Gameplay
+- Exactly seven distinct category prompts per dive, with 20 seconds for each.
+- One valid answer advances each prompt. Incorrect answers shake the input without advancing or deducting points.
+- Five rarity tiers: Plankton (10 pts), Schooler (30 pts), Rare (45 pts), Deep Cut (60 pts), and One in a Krillion (100 pts). Higher rarity earns more points and a deeper descent; the live panel shows each rarity band.
+- Preset depth zones: Sunlight (0–199 m), Twilight (200–999 m), Midnight (1,000–3,999 m), Abyssal (4,000–5,999 m), and Hadal (6,000–7,000 m).
+- 10 meters per point, up to 700 points and 7,000 meters.
+- Daily Dive and randomized Unlimited rounds; local saved daily progress.
+- Animated score/depth, progressively darkening ocean, drifting sea creatures, bubble effects, rarity reveal, pause/resume, optional synthesized audio feedback.
+- Local dive log with completed-dive count, personal-best and average depth, recent rounds, and CSV export.
+- Sound is off by default. Use Pause to freeze the 20-second timer; Resume continues where you left off.
 
-## Build on a Mac
-1. Install Xcode and XcodeGen (`brew install xcodegen`).
-2. Run `swift scripts/make-icon.swift Krillion` to generate the placeholder icon.
-3. Run `xcodegen generate` and open `Krillion.xcodeproj`.
-4. Choose the matching Apple Developer team in Signing & Capabilities.
-5. After building, test the app and add the real game and HTTPS URL to `Krillion/ContentView.swift`.
-6. To create an **App Store-uploadable** IPA, archive in Xcode and export using an Apple distribution signing identity and provisioning profile for `com.mariasheinin.krillion`.
+## Technical architecture
+- `index.html`: self-contained responsive frontend, state, animations, synthesized Web Audio.
+- `src/worker.js`: Cloudflare Worker routing and answer validation API.
+- `prompts.json`: curated category and answer data.
+- `wrangler.jsonc`: Cloudflare Worker with static asset binding.
+- Deploy with `npx wrangler deploy`.
 
-The GitHub Actions workflow runs only on manual dispatch and produces a clearly marked **UNSIGNED test IPA**, not an App Store uploadable file. It uses a GitHub macOS runner; charges or minutes may apply depending on account plan and repository visibility.
+## Important limitations
+The curated database is not exhaustive; valid answers not in it may be rejected. Rarity scores are manually assigned, **not** sourced from historical Krillion responses. The browser currently owns its timer and score state, so competitive anti-cheat is not yet implemented. Multiplayer, accounts, friends, archive, themed packs, and original game's precise presentation and private scoring are not replicated. Daily mode saves locally, not to a server. This is not an exact clone.
 
-**Not ready for App Review:** A placeholder without meaningful functionality may be rejected under Apple's minimum functionality rules. Full game content, privacy declarations, metadata, accessibility checks and valid signing are required first.
+## Development checklist
+- [x] Seven prompts and 20-second countdown
+- [x] Retry invalid answers
+- [x] Depth tiers and score animations
+- [x] Pause/resume, optional sound
+- [x] Underwater animated scene and rarity reveal
+- [ ] Authoritative server-side round session and timer
+- [ ] Broad verified answer knowledge base with aliases
+- [ ] Analytics-derived rarity scoring
+- [ ] Complete feature parity for game modes and social features
+- [ ] Automated tests and live browser verification
