@@ -15,7 +15,7 @@ export function buildBank(base){
  const bank=base.map(p=>{const seen=new Set();const answers=[...p.answers,...additions(p.id)].filter(([a])=>{const k=normalize(a);if(seen.has(k)||p.id==='ocean'&&k==='human'||p.id==='countries'&&k==='england')return false;seen.add(k);return true});return {...p,answers}});
  const add=(id,title,hint,values)=>{if(bank.length>=5000)return;const scores=[5,10,15,20,25,30,35,45,50,60,70,95];bank.push({id,title,hint,answers:values.map((v,i)=>[String(v),scores[Math.min(11,Math.floor(i*12/values.length))]])})};
  const originals=[...bank];const seenTitles=new Set(bank.map(p=>p.title));
- const emit=(p,kind,rule,filter)=>{const answers=p.answers.filter(([a])=>filter(normalize(a)));if(answers.length<2)return;const title=p.title+' — '+rule;if(seenTitles.has(title))return;seenTitles.add(title);bank.push({...p,id:p.id+'-'+kind,title,hint:'Name a valid example matching the stated condition.',answers})};
+ const emit=(p,kind,rule,filter)=>{const answers=p.answers.filter(([a])=>filter(normalize(a)));if(answers.length<7)return;const title=p.title+' — '+rule;if(seenTitles.has(title))return;seenTitles.add(title);bank.push({...p,id:p.id+'-'+kind,title,hint:'Name a valid example matching the stated condition.',answers})};
  for(const p of originals){for(const a of 'abcdefghijklmnopqrstuvwxyz'){emit(p,'starts-'+a,'starting with '+a.toUpperCase(),v=>v.startsWith(a));emit(p,'ends-'+a,'ending with '+a.toUpperCase(),v=>v.endsWith(a));emit(p,'contains-'+a,'containing the letter '+a.toUpperCase(),v=>v.includes(a));}for(let n=3;n<=15;n++)emit(p,'length-'+n,'with '+n+' letters',v=>v.replace(/[^a-z]/g,'').length===n);}
  return bank;
 }

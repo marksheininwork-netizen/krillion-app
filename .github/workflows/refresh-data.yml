@@ -1,6 +1,10 @@
 name: Refresh open trivia datasets
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/refresh-data.mjs'
+      - '.github/workflows/refresh-data.yml'
   schedule:
     - cron: '23 7 * * *'
 permissions:
