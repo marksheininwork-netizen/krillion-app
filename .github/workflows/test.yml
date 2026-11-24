@@ -13,4 +13,6 @@ jobs:
         with:
           node-version: '22'
       - name: Test game APIs and UI
-        run: node tests/smoke.mjs
+        run: |
+          node tests/smoke.mjs
+          node --test tests/questions.test.mjs
