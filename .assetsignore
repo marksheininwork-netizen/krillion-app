@@ -1,6 +1,7 @@
 src/
 tests/
 .github/
+.wrangler/
 wrangler.jsonc
 prompts.json
 README.md
